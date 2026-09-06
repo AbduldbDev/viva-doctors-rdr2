@@ -1,6 +1,6 @@
 {
   "name": "viva-doctors",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "description": "Ulat ng Kaso — VIVA! Doctors (Vue + Tauri, RDR2-themed)",
   "type": "module",

@@ -21,3 +21,4 @@ jobs:
           tagName: ${{ github.ref_name }}
           releaseName: "v__VERSION__"
           releaseDraft: false
+          updaterJsonPreferNsis: true
