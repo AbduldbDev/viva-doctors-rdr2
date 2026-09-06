@@ -10,7 +10,7 @@ import PatientRecordTab from "./components/PatientRecordTab.vue";
 import PatientRecordsPage from "./components/PatientRecordsPage.vue";
 import LawmenTrainingTab from "./components/LawmenTraining.vue";
 import SettingsTab from "./components/SettingsTab.vue";
-
+import UpdateGate from "./components/UpdateGate.vue";
 const TABS = [
   { id: "patient", label: "Patient", component: PatientTab },
   { id: "inventory", label: "Inventory", component: InventoryLogsTab },
@@ -60,127 +60,129 @@ provide("notify", notify);
 </script>
 
 <template>
-  <div class="app-shell">
-    <!-- Sidebar toggle button (top-left) -->
-    <button
-      class="sidebar-toggle-btn"
-      title="Menu"
-      @click="sidebarOpen = !sidebarOpen"
-    >
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
+  <UpdateGate>
+    <div class="app-shell">
+      <!-- Sidebar toggle button (top-left) -->
+      <button
+        class="sidebar-toggle-btn"
+        title="Menu"
+        @click="sidebarOpen = !sidebarOpen"
       >
-        <path
-          d="M3 6h18M3 12h18M3 18h18"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-        />
-      </svg>
-    </button>
-
-    <!-- Sidebar -->
-    <aside class="sidebar" :class="{ open: sidebarOpen }">
-      <div class="sidebar-header">
-        <span>Mga Pahina</span>
-        <button
-          class="sidebar-close-btn"
-          title="Isara"
-          @click="sidebarOpen = false"
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
         >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <path
-              d="M6 6l12 12M18 6L6 18"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-            />
-          </svg>
-        </button>
-      </div>
-      <nav class="sidebar-nav">
-        <button
-          v-for="tab in TABS"
-          :key="tab.id"
-          class="sidebar-btn"
-          :class="{ active: activeTab === tab.id && !showSettings }"
-          @click="
-            selectTab(tab.id);
-            showSettings = false;
-          "
-        >
-          {{ tab.label }}
-        </button>
-        <div class="sidebar-divider"></div>
-        <button
-          class="sidebar-btn"
-          :class="{ active: showSettings }"
-          @click="
-            showSettings = true;
-            sidebarOpen = false;
-          "
-        >
-          ⚙ Settings
-        </button>
-      </nav>
-    </aside>
+          <path
+            d="M3 6h18M3 12h18M3 18h18"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
 
-    <!-- Backdrop when sidebar is open, click to close -->
-    <div
-      v-if="sidebarOpen"
-      class="sidebar-backdrop"
-      @click="sidebarOpen = false"
-    ></div>
-
-    <div class="ledger">
-      <header class="ledger-header">
-        <!-- <img class="home_logo" src="./assets/icon.ico" alt="VIVA! Doctors" /> -->
-        <img
-          class="home_logo"
-          src="./assets/Viva_Icon.gif"
-          alt="VIVA! Doctors"
-        />
-        <h1>VIVA! Doctors</h1>
-        <p>Talaan ng Pasyente &amp; Medikal na Ulat</p>
-        <p class="current-page-title">{{ currentPageTitle }}</p>
-      </header>
-
-      <template v-if="showSettings">
-        <nav class="tab-row">
+      <!-- Sidebar -->
+      <aside class="sidebar" :class="{ open: sidebarOpen }">
+        <div class="sidebar-header">
+          <span>Mga Pahina</span>
           <button
-            class="tab-btn active"
-            style="flex: none; padding-left: 22px; padding-right: 22px"
+            class="sidebar-close-btn"
+            title="Isara"
+            @click="sidebarOpen = false"
           >
-            Settings
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M6 6l12 12M18 6L6 18"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
           </button>
+        </div>
+        <nav class="sidebar-nav">
           <button
-            class="tab-btn"
-            style="flex: none; padding-left: 16px; padding-right: 16px"
-            @click="showSettings = false"
+            v-for="tab in TABS"
+            :key="tab.id"
+            class="sidebar-btn"
+            :class="{ active: activeTab === tab.id && !showSettings }"
+            @click="
+              selectTab(tab.id);
+              showSettings = false;
+            "
           >
-            ← Balik
+            {{ tab.label }}
+          </button>
+          <div class="sidebar-divider"></div>
+          <button
+            class="sidebar-btn"
+            :class="{ active: showSettings }"
+            @click="
+              showSettings = true;
+              sidebarOpen = false;
+            "
+          >
+            ⚙ Settings
           </button>
         </nav>
-        <SettingsTab />
-      </template>
+      </aside>
 
-      <template v-else>
-        <component :is="TABS.find((t) => t.id === activeTab).component" />
-      </template>
+      <!-- Backdrop when sidebar is open, click to close -->
+      <div
+        v-if="sidebarOpen"
+        class="sidebar-backdrop"
+        @click="sidebarOpen = false"
+      ></div>
+
+      <div class="ledger">
+        <header class="ledger-header">
+          <!-- <img class="home_logo" src="./assets/icon.ico" alt="VIVA! Doctors" /> -->
+          <img
+            class="home_logo"
+            src="./assets/Viva_Icon.gif"
+            alt="VIVA! Doctors"
+          />
+          <h1>VIVA! Doctors</h1>
+          <p>Talaan ng Pasyente &amp; Medikal na Ulat</p>
+          <p class="current-page-title">{{ currentPageTitle }}</p>
+        </header>
+
+        <template v-if="showSettings">
+          <nav class="tab-row">
+            <button
+              class="tab-btn active"
+              style="flex: none; padding-left: 22px; padding-right: 22px"
+            >
+              Settings
+            </button>
+            <button
+              class="tab-btn"
+              style="flex: none; padding-left: 16px; padding-right: 16px"
+              @click="showSettings = false"
+            >
+              ← Balik
+            </button>
+          </nav>
+          <SettingsTab />
+        </template>
+
+        <template v-else>
+          <component :is="TABS.find((t) => t.id === activeTab).component" />
+        </template>
+      </div>
+
+      <transition name="fade">
+        <div v-if="toastMessage" class="toast">{{ toastMessage }}</div>
+      </transition>
     </div>
-
-    <transition name="fade">
-      <div v-if="toastMessage" class="toast">{{ toastMessage }}</div>
-    </transition>
-  </div>
+  </UpdateGate>
 </template>
 
 <style scoped>
