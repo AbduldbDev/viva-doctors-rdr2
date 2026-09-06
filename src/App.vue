@@ -11,6 +11,8 @@ import PatientRecordsPage from "./components/PatientRecordsPage.vue";
 import LawmenTrainingTab from "./components/LawmenTraining.vue";
 import SettingsTab from "./components/SettingsTab.vue";
 import UpdateGate from "./components/UpdateGate.vue";
+import VersionOverlay from "./components/VersionOverlay.vue";
+
 const TABS = [
   { id: "patient", label: "Patient", component: PatientTab },
   { id: "inventory", label: "Inventory", component: InventoryLogsTab },
@@ -182,6 +184,7 @@ provide("notify", notify);
         <div v-if="toastMessage" class="toast">{{ toastMessage }}</div>
       </transition>
     </div>
+    <VersionOverlay />
   </UpdateGate>
 </template>
 
