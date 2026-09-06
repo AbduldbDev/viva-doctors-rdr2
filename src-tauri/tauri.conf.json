@@ -8,8 +8,8 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "VIVA! Doctors",
-    "version": "1.0.2"
+    "productName": "VivaDoctors",
+    "version": "1.0.3"
   },
   "tauri": {
     "allowlist": {

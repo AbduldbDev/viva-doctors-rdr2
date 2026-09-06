@@ -36,8 +36,6 @@ onMounted(async () => {
     }
   } catch (e) {
     console.error("Update check failed:", e);
-    // Fail-open: if the check itself fails (e.g. no internet),
-    // let the user use the app rather than locking them out.
   } finally {
     checking.value = false;
   }
