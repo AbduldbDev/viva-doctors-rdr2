@@ -149,7 +149,7 @@ provide("notify", notify);
             src="./assets/Viva_Icon.gif"
             alt="VIVA! Doctors"
           />
-          <h1>VIVA! Doctors 1.0.3</h1>
+          <h1>VIVA! Doctors</h1>
           <p>Talaan ng Pasyente &amp; Medikal na Ulat</p>
           <p class="current-page-title">{{ currentPageTitle }}</p>
         </header>
